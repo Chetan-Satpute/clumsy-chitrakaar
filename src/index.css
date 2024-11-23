@@ -2,6 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+/* material web theme */
+:root,
+:host {
+  --md-sys-color-background: #f8faf3;
+  --md-sys-color-on-background: #191d18;
+  --md-sys-color-surface: #f8faf3;
+  --md-sys-color-surface-dim: #d8dbd4;
+  --md-sys-color-surface-bright: #f8faf3;
+  --md-sys-color-surface-container-lowest: #ffffff;
+  --md-sys-color-surface-container-low: #f2f4ed;
+  --md-sys-color-surface-container: #ecefe7;
+  --md-sys-color-surface-container-high: #e7e9e2;
+  --md-sys-color-surface-container-highest: #e1e3dc;
+  --md-sys-color-on-surface: #191d18;
+  --md-sys-color-surface-variant: #dde5d8;
+  --md-sys-color-on-surface-variant: #41493f;
+  --md-sys-color-inverse-surface: #2e312c;
+  --md-sys-color-inverse-on-surface: #eff2ea;
+  --md-sys-color-outline: #71796e;
+  --md-sys-color-outline-variant: #c1c9bc;
+  --md-sys-color-shadow: #000000;
+  --md-sys-color-scrim: #000000;
+  --md-sys-color-surface-tint: #316a36;
+  --md-sys-color-primary: #316a36;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #84c184;
+  --md-sys-color-on-primary-container: #002e0a;
+  --md-sys-color-inverse-primary: #98d596;
+  --md-sys-color-secondary: #4d644b;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #d3eece;
+  --md-sys-color-on-secondary-container: #3a5039;
+  --md-sys-color-tertiary: #006877;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #5dc0d3;
+  --md-sys-color-on-tertiary-container: #002c33;
+  --md-sys-color-error: #ba1a1a;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-error-container: #ffdad6;
+  --md-sys-color-on-error-container: #410002;
+}
+
 /* marquee */
 .marquee {
   width: 100%;
