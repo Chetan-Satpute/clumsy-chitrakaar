@@ -1,8 +1,13 @@
 import Flicking from '@egjs/react-flicking';
 import logo from '~/assets/images/logo.png';
-import '@egjs/react-flicking/dist/flicking.css';
 import Flower from '~/assets/svgs/flower';
 import Item from './item';
+import FocusFlicking from './focus-flicking';
+import Instagram from '~/assets/svgs/instagram';
+import Whatsapp from '~/assets/svgs/whatsapp';
+
+import '@material/web/icon/icon.js';
+import '@egjs/react-flicking/dist/flicking.css';
 
 function Home() {
   return (
@@ -29,20 +34,19 @@ function Home() {
         </div>
       </Flicking>
 
-      <div className="my-10">
-        <p className="font-bold text-xl text-center mb-5">Handmade with Love</p>
-        <div className="bg-green-200 p-5 mx-5 lg:mx-10">
-          <p className="font-bold text-xs text-center">
-            Website & Products Overall Information Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
-          </p>
-        </div>
+      <div className="mx-5 my-10 bg-green-200 p-3">
+        <h6 className="font-bold text-center text-sm mb-2">
+          Website & Products Overall Information
+        </h6>
+        <p className="text-center text-sm font-normal">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
       </div>
 
       <div className="relative mt-24 mb-10 bg-green-200 py-5 flex justify-end px-10">
@@ -61,13 +65,71 @@ function Home() {
       <div className="my-10 h-5 bg-green-300" />
 
       <div className="mb-10">
-        <h4 className="text-xl text-center font-extrabold mb-5">Our Products</h4>
+        <h4 className="text-xl text-center font-extrabold mb-5">
+          Our Products
+        </h4>
 
         <div className="flex flex-wrap justify-around gap-5">
           <Item />
           <Item />
           <Item />
         </div>
+      </div>
+
+      <div className="bg-green-400 h-4 mb-3" />
+
+      <div className="relative bg-green-400 mb-10 pt-10">
+        <div className="h-52 md:h-96 overflow-auto z-10 no-scrollbar">
+          <div className="z-10 sticky align-right top-0 w-52 md:w-96 h-52 md:h-96 ml-auto rounded-md bg-orange-200"></div>
+          <div className="z-10 sticky align-right top-0 w-52 md:w-96 h-52 md:h-96 ml-auto rounded-md bg-green-200"></div>
+        </div>
+        <div className="absolute bg-white bottom-0 left-0 w-full h-10 z-0" />
+        <h5 className="font-bold absolute top-5 left-0 text-sm md:text-lg text-center w-1/2">
+          Customised Calendars
+        </h5>
+        <p className="absolute top-20 left-0 font-extrabold w-5/12 sm:w-1/2 lg:w-7/12 text-base md:text-xl text-right px-1 lg:px-5">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+        </p>
+      </div>
+
+      <h4 className="text-xl text-center font-extrabold mb-5">
+        Get ready for the gifting season
+      </h4>
+
+      <FocusFlicking />
+
+      <div className="mx-5 my-10 bg-green-300 p-3">
+        <h6 className="font-bold text-center text-sm mb-2">
+          Website & Products Overall Information
+        </h6>
+        <p className="text-center text-sm font-normal">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+
+      <div className="bg-green-200 p-2 flex justify-around">
+        <span className="flex gap-2 items-center">
+          <Instagram className="h-5 w-5" />
+          <span className="text-xs underline font-semibold">
+            clumsy_chitrakaar
+          </span>
+        </span>
+        <span className="flex gap-2 items-center">
+          <Whatsapp className="h-5 w-5" />
+          <span className="text-xs underline font-semibold">7038512750</span>
+        </span>
+        <span className="flex gap-2 items-center">
+          <md-icon class="font-light">mail</md-icon>
+          <span className="text-xs underline font-semibold">
+            pallavis5199@gmail.com
+          </span>
+        </span>
       </div>
     </div>
   );
