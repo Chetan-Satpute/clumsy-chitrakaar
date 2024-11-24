@@ -17,17 +17,17 @@ function Home() {
       </div>
 
       <Flicking circular>
-        <div className="w-2/4 p-2">
+        <div className="w-3/4 lg:w-1/2 p-2">
           <div className="aspect-square w-full bg-blue-200 flex justify-center items-center rounded-md">
             1
           </div>
         </div>
-        <div className="w-2/4 p-2">
+        <div className="w-3/4 lg:w-1/2 p-2">
           <div className="aspect-square w-full bg-green-200 flex justify-center items-center rounded-md">
             2
           </div>
         </div>
-        <div className="w-2/4 p-2">
+        <div className="w-3/4 lg:w-1/2 p-2">
           <div className="aspect-square w-full bg-orange-200 flex justify-center items-center rounded-md">
             3
           </div>
@@ -49,7 +49,7 @@ function Home() {
         </p>
       </div>
 
-      <div className="relative mt-24 mb-10 bg-green-200 py-5 flex justify-end px-10">
+      <div className="relative mt-24 mb-10 bg-green-200 py-5 flex justify-end px-5">
         <div className="absolute top-0 left-0 w-5/12 bg-white h-full z-0" />
         <div className="absolute top-0 left-0 w-6/12 h-full z-20 flex justify-start items-center p-5">
           <p className="font-extrabold text-xl">
@@ -78,16 +78,16 @@ function Home() {
 
       <div className="bg-green-400 h-4 mb-3" />
 
-      <div className="relative bg-green-400 mb-10 pt-10">
-        <div className="h-52 md:h-96 overflow-auto z-10 no-scrollbar">
-          <div className="z-10 sticky align-right top-0 w-52 md:w-96 h-52 md:h-96 ml-auto rounded-md bg-orange-200"></div>
-          <div className="z-10 sticky align-right top-0 w-52 md:w-96 h-52 md:h-96 ml-auto rounded-md bg-green-200"></div>
+      <div className="relative bg-green-400 mb-10 pt-10 h-4/6">
+        <div className="h-full overflow-auto z-10 no-scrollbar">
+          <div className="z-10 sticky align-right top-0 h-full w-3/4 ml-auto rounded-md bg-orange-200"></div>
+          <div className="z-10 sticky align-right top-0 h-full w-3/4 ml-auto rounded-md bg-green-200"></div>
         </div>
-        <div className="absolute bg-white bottom-0 left-0 w-full h-10 z-0" />
-        <h5 className="font-bold absolute top-5 left-0 text-sm md:text-lg text-center w-1/2">
+        <div className="absolute bg-white bottom-0 left-0 w-full h-1/6 z-0" />
+        <h5 className="z-20 font-bold absolute top-[20%] left-0 text-sm md:text-lg w-1/2 pl-2 lg:px-5">
           Customised Calendars
         </h5>
-        <p className="absolute top-20 left-0 font-extrabold w-5/12 sm:w-1/2 lg:w-7/12 text-base md:text-xl text-right px-1 lg:px-5">
+        <p className="absolute z-20 top-[40%] left-0 font-extrabold w-1/2 text-base md:text-xl text-left pl-2 lg:px-5">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit
         </p>
       </div>
@@ -113,7 +113,7 @@ function Home() {
         </p>
       </div>
 
-      <div className="bg-green-200 p-2 flex justify-around">
+      <div className="bg-green-200 p-2 flex justify-around gap-2 flex-wrap">
         <span className="flex gap-2 items-center">
           <Instagram className="h-5 w-5" />
           <span className="text-xs underline font-semibold">
