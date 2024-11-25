@@ -1,12 +1,13 @@
-import '@material/web/icon/icon.js';
-import '@material/web/iconbutton/icon-button.js';
 import {Link, useLocation, useNavigate} from 'react-router';
 import {useAppSelector} from '~/redux/hooks';
+import '@material/web/icon/icon.js';
+import '@material/web/iconbutton/icon-button.js';
 
 function Header() {
   const navigate = useNavigate();
   const {pathname} = useLocation();
 
+  const isSignedIn = useAppSelector((state) => state.user.profile !== null);
   const cartProductsCount = useAppSelector((state) =>
     state.cart.products.reduce((acc, p) => acc + p.quantity, 0),
   );
@@ -37,9 +38,11 @@ function Header() {
             )}
           </span>
         </Link>
-        <md-icon-button>
-          <md-icon>account_circle</md-icon>
-        </md-icon-button>
+        {isSignedIn && (
+          <md-icon-button>
+            <md-icon>account_circle</md-icon>
+          </md-icon-button>
+        )}
       </span>
     </div>
   );

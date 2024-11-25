@@ -3,12 +3,14 @@ import {useAppSelector} from '~/redux/hooks';
 import CartItem from './cart-item';
 import ShoppingBagSpeed from '~/assets/svgs/shopping-bag-speed';
 import products from '~/data/products';
+import SignInWithGoogle from '~/components/sign-in-with-google';
 
 function Cart() {
   const cartProducts = useAppSelector((state) => state.cart.products);
   const cartSubTotal = useAppSelector((state) =>
     state.cart.products.reduce((acc, p) => acc + p.price * p.quantity, 0),
   );
+  const isSignedIn = useAppSelector((state) => state.user.profile !== null);
 
   const cartItems = cartProducts.map((cartProduct) => (
     <CartItem key={cartProduct.id} cartProduct={cartProduct} />
@@ -36,6 +38,22 @@ function Cart() {
             <span className="font-bold text-xl">Subtotal</span>
             <span className="font-bold text-xl">{cartSubTotal} /-</span>
           </div>
+
+          {isSignedIn ? (
+            <div className="flex justify-center my-10 px-5">
+              <md-filled-button trailing-icon class="w-full max-w-sm">
+                Checkout
+                <md-icon slot="icon">shopping_cart_checkout</md-icon>
+              </md-filled-button>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center gap-4 my-10">
+              <SignInWithGoogle />
+              <span className="font-semibold text-sm flex items-center gap-2 text-blue-500">
+                <md-icon>info</md-icon> Sign in to place your order!
+              </span>
+            </div>
+          )}
         </>
       ) : (
         <div className="flex flex-col items-center gap-5 mb-10">
