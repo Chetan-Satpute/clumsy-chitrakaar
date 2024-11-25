@@ -3,11 +3,8 @@ import logo from '~/assets/images/logo.png';
 import Flower from '~/assets/svgs/flower';
 import Item from './item';
 import FocusFlicking from './focus-flicking';
-import Instagram from '~/assets/svgs/instagram';
-import Whatsapp from '~/assets/svgs/whatsapp';
 
 import '@material/web/icon/icon.js';
-import '@egjs/react-flicking/dist/flicking.css';
 
 function Home() {
   return (
@@ -111,25 +108,6 @@ function Home() {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
-      </div>
-
-      <div className="bg-green-200 p-2 flex justify-around gap-2 flex-wrap">
-        <span className="flex gap-2 items-center">
-          <Instagram className="h-5 w-5" />
-          <span className="text-xs underline font-semibold">
-            clumsy_chitrakaar
-          </span>
-        </span>
-        <span className="flex gap-2 items-center">
-          <Whatsapp className="h-5 w-5" />
-          <span className="text-xs underline font-semibold">7038512750</span>
-        </span>
-        <span className="flex gap-2 items-center">
-          <md-icon class="font-light">mail</md-icon>
-          <span className="text-xs underline font-semibold">
-            pallavis5199@gmail.com
-          </span>
-        </span>
       </div>
     </div>
   );

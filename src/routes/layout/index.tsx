@@ -1,6 +1,7 @@
 import {Outlet} from 'react-router';
 import Marquee from './marquee';
 import Header from './header';
+import Footer from './footer';
 
 function AppLayout() {
   return (
@@ -9,6 +10,7 @@ function AppLayout() {
         <Marquee />
         <Header />
         <Outlet />
+        <Footer />
       </div>
     </div>
   );
