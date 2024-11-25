@@ -5,8 +5,13 @@ import Item from './item';
 import FocusFlicking from './focus-flicking';
 
 import '@material/web/icon/icon.js';
+import products from '~/data/products';
 
 function Home() {
+  const productItems = products.map((product) => (
+    <Item key={product.id} product={product} />
+  ));
+
   return (
     <div className="flex-1 overflow-auto">
       <div className="flex justify-center">
@@ -67,9 +72,7 @@ function Home() {
         </h4>
 
         <div className="flex flex-wrap justify-around gap-5">
-          <Item />
-          <Item />
-          <Item />
+          {productItems}
         </div>
       </div>
 
