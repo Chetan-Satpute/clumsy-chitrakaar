@@ -2,8 +2,34 @@ import Flicking from '@egjs/react-flicking';
 import logo from '~/assets/images/logo.png';
 import Flower from '~/assets/svgs/flower';
 import '@material/web/button/filled-button.js';
+import {Navigate, useParams} from 'react-router';
+import {useMemo} from 'react';
+import products from '~/data/products';
+import AddToCart from '~/components/add-to-cart';
+import {useAppDispatch, useAppSelector} from '~/redux/hooks';
+import {addProductToCart, removeProductFromCart} from '~/redux/cart/slice';
 
 function Calendar() {
+  const params = useParams();
+  const productId = params.id;
+
+  const dispatch = useAppDispatch();
+  const cartProduct = useAppSelector((state) =>
+    state.cart.products.find((p) => p.id === productId),
+  );
+
+  const product = useMemo(() => {
+    if (!productId) {
+      return undefined;
+    }
+
+    return products.find((p) => p.id === productId);
+  }, [productId]);
+
+  if (!product) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <div className="flex-1 overflow-auto">
       <div className="flex justify-center mb-10">
@@ -29,13 +55,15 @@ function Calendar() {
 
         <div className="absolute w-5/12 md:w-5/12 bg-white h-full top-0 right-0 flex flex-col justify-center items-center gap-5 overflow-hidden">
           <div>
-            <h6 className="text-center font-extrabold">Product name</h6>
-            <p className="text-center font-bold">499 /-</p>
+            <h6 className="text-center font-extrabold">{product.name}</h6>
+            <p className="text-center font-bold">{product.price} /-</p>
           </div>
-          <md-filled-button trailing-icon>
-            Add to cart
-            <md-icon slot="icon">shopping_cart</md-icon>
-          </md-filled-button>
+
+          <AddToCart
+            count={cartProduct?.quantity || 0}
+            onIncrement={() => dispatch(addProductToCart(product))}
+            onDecrement={() => dispatch(removeProductFromCart(product))}
+          />
 
           <div className="absolute z-0 -left-5 top-3">
             <Flower />

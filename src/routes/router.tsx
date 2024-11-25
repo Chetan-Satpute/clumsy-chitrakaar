@@ -19,7 +19,7 @@ const router = createBrowserRouter([
         element: <Cart />,
       },
       {
-        path: 'calendar/:calendar-id',
+        path: 'calendar/:id',
         element: <Calendar />,
       },
     ],

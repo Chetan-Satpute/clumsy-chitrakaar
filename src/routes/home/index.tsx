@@ -6,10 +6,13 @@ import FocusFlicking from './focus-flicking';
 
 import '@material/web/icon/icon.js';
 import products from '~/data/products';
+import {Link} from 'react-router';
 
 function Home() {
   const productItems = products.map((product) => (
-    <Item key={product.id} product={product} />
+    <Link key={product.id} to={`/calendar/${product.id}`}>
+      <Item product={product} />
+    </Link>
   ));
 
   return (
