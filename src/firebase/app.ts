@@ -30,3 +30,7 @@ export async function signInWithGoogle() {
     console.error(error);
   }
 }
+
+export async function signOut() {
+  return auth.signOut();
+}

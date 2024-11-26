@@ -81,17 +81,19 @@ function Home() {
 
       <div className="bg-green-400 h-4 mb-3" />
 
-      <div className="relative bg-green-400 mb-10 pt-10 h-4/6">
+      <div className="relative bg-green-400 mb-10 pt-10 h-4/6 lg:h-5/6">
         <div className="h-full overflow-auto z-10 no-scrollbar">
-          <div className="z-10 sticky align-right top-0 h-full w-3/4 ml-auto rounded-md bg-orange-200"></div>
-          <div className="z-10 sticky align-right top-0 h-full w-3/4 ml-auto rounded-md bg-green-200"></div>
+          <div className="z-10 sticky align-right top-0 h-full w-5/6 ml-auto rounded-md bg-orange-200"></div>
+          <div className="z-10 sticky align-right top-0 h-full w-5/6 ml-auto rounded-md bg-green-200"></div>
         </div>
         <div className="absolute bg-white bottom-0 left-0 w-full h-1/6 z-0" />
         <h5 className="z-20 font-bold absolute top-[20%] left-0 text-sm md:text-lg w-1/2 pl-2 lg:px-5">
           Customised Calendars
         </h5>
-        <p className="absolute z-20 top-[40%] left-0 font-extrabold w-1/2 text-base md:text-xl text-left pl-2 lg:px-5">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+        <p className="absolute z-20 top-[30%] left-0 font-extrabold w-1/2 text-base md:text-xl text-left pl-2 lg:px-5">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum
+          dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit
+          amet, consectetur adipiscing elit
         </p>
       </div>
 

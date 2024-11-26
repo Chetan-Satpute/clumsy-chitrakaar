@@ -2,6 +2,7 @@ import {Link, useLocation, useNavigate} from 'react-router';
 import {useAppSelector} from '~/redux/hooks';
 import '@material/web/icon/icon.js';
 import '@material/web/iconbutton/icon-button.js';
+import {signOut} from '~/firebase/app';
 
 function Header() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ function Header() {
           </span>
         </Link>
         {isSignedIn && (
-          <md-icon-button>
+          <md-icon-button onClick={signOut}>
             <md-icon>account_circle</md-icon>
           </md-icon-button>
         )}
