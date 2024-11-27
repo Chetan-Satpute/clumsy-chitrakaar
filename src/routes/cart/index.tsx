@@ -4,8 +4,14 @@ import CartItem from './cart-item';
 import ShoppingBagSpeed from '~/assets/svgs/shopping-bag-speed';
 import products from '~/data/products';
 import SignInWithGoogle from '~/components/sign-in-with-google';
+import {useNavigate} from 'react-router';
+import {useDispatch} from 'react-redux';
+import {saveOrderCart} from '~/redux/order/slice';
 
 function Cart() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const cartProducts = useAppSelector((state) => state.cart.products);
   const cartSubTotal = useAppSelector((state) =>
     state.cart.products.reduce((acc, p) => acc + p.price * p.quantity, 0),
@@ -24,6 +30,11 @@ function Cart() {
     <CartItem key={product.id} cartProduct={{...product, quantity: 0}} />
   ));
 
+  const handleCheckoutClick = () => {
+    dispatch(saveOrderCart(cartProducts));
+    navigate('/address');
+  };
+
   return (
     <div className="flex-1 overflow-auto">
       <div className="flex justify-center mb-10">
@@ -41,7 +52,11 @@ function Cart() {
 
           {isSignedIn ? (
             <div className="flex justify-center my-10 px-5">
-              <md-filled-button trailing-icon class="w-full max-w-sm">
+              <md-filled-button
+                trailing-icon
+                class="w-full max-w-sm"
+                onClick={handleCheckoutClick}
+              >
                 Checkout
                 <md-icon slot="icon">shopping_cart_checkout</md-icon>
               </md-filled-button>

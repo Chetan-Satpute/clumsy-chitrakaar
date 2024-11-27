@@ -11,6 +11,9 @@ declare global {
       'md-outlined-button': unknown;
       'md-filled-text-field': unknown;
       'md-circular-progress': unknown;
+      'md-filled-text-field': unknown;
+      'md-filled-select': unknown;
+      'md-select-option': unknown;
     }
   }
 }
