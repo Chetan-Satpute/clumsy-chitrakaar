@@ -6,6 +6,8 @@ import AppLayout from './layout';
 import Calendar from './calendar';
 import Address from './address';
 import Payment from './payment';
+import ThankYou from './thankyou';
+import Profile from './profile';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: 'payment',
         element: <Payment />,
+      },
+      {
+        path: 'thank-you',
+        element: <ThankYou />,
+      },
+      {
+        path: 'profile',
+        element: <Profile />,
       },
     ],
   },

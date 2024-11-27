@@ -25,3 +25,10 @@ export function saveOrderAddressReducer(
 ) {
   state.address = action.payload;
 }
+
+export function setPlacingOrderReducer(
+  state: OrderSlice,
+  action: PayloadAction<boolean>,
+) {
+  state.isPlacingOrder = action.payload;
+}

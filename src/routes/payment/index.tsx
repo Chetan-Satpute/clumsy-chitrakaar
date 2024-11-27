@@ -1,16 +1,28 @@
 import {Alert, AlertTitle, Button} from '@mui/material';
 import {useState} from 'react';
-import {Navigate} from 'react-router';
+import {useDispatch} from 'react-redux';
+import {Navigate, useNavigate} from 'react-router';
 import logo from '~/assets/images/logo.png';
 import qrCode from '~/assets/images/qr-code.jpeg';
+import {saveOrder} from '~/firebase/app';
 import {useAppSelector} from '~/redux/hooks';
+import {setPlacingOrder} from '~/redux/order/slice';
+import {fileToBase64} from '~/utils/file';
+import '@material/web/progress/circular-progress.js';
 
 function Payment() {
   const [images, setImages] = useState<File[]>([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const hasCartAndAddress = useAppSelector(
-    (state) => state.order.cart !== null && state.order.address !== null,
-  );
+  const isPlacingOrder = useAppSelector((state) => state.order.isPlacingOrder);
+
+  const orderCart = useAppSelector((state) => state.order.cart);
+  const orderAddress = useAppSelector((state) => state.order.address);
+
+  const user = useAppSelector((state) => state.user.profile);
+
+  const hasCartAndAddress = orderCart !== null && orderAddress !== null;
   const cartAmount = useAppSelector((state) =>
     state.order.cart?.reduce(
       (acc, product) => (acc += product.price * product.quantity),
@@ -18,7 +30,7 @@ function Payment() {
     ),
   );
 
-  if (!hasCartAndAddress) {
+  if (!hasCartAndAddress || !user) {
     return <Navigate to="/cart" />;
   }
 
@@ -46,13 +58,29 @@ function Payment() {
           {image.name} ({(image.size / 1024).toFixed(2)} KB)
         </div>
         <span>
-          <md-icon-button onClick={handleRemove}>
+          <md-icon-button
+            onClick={handleRemove}
+            disabled={isPlacingOrder || undefined}
+          >
             <md-icon>delete</md-icon>
           </md-icon-button>
         </span>
       </div>
     );
   });
+
+  const handlePlaceOrder = async () => {
+    dispatch(setPlacingOrder(true));
+
+    const filesAsBase64 = await Promise.all(
+      images.map((imageFile) => fileToBase64(imageFile)),
+    );
+
+    await saveOrder(orderCart, orderAddress, filesAsBase64, user);
+
+    dispatch(setPlacingOrder(false));
+    navigate('/thank-you');
+  };
 
   return (
     <div className="flex-1 overflow-auto">
@@ -109,6 +137,7 @@ function Payment() {
             color="primary"
             className="!rounded-full !normal-case w-full"
             startIcon={<md-icon slot="icon">upload</md-icon>}
+            disabled={isPlacingOrder}
           >
             Select Images
             <input
@@ -120,7 +149,12 @@ function Payment() {
             />
           </Button>
         ) : (
-          <md-filled-button trailing-icon class="w-full max-w-sm">
+          <md-filled-button
+            trailing-icon
+            class="w-full max-w-sm"
+            disabled={isPlacingOrder || undefined}
+            onClick={handlePlaceOrder}
+          >
             Place order
           </md-filled-button>
         )}

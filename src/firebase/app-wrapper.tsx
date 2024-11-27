@@ -18,6 +18,7 @@ function FirebaseAppWrapper(props: PropsWithChildren) {
           user === null
             ? null
             : {
+                uid: user.uid,
                 displayName: user.displayName,
                 email: user.email,
                 photoURL: user.photoURL,

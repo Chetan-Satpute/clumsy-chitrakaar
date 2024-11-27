@@ -5,7 +5,17 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
-import {getFirestore} from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from 'firebase/firestore';
+import {Order, OrderProduct} from '~/redux/order/types';
+import {FirebaseUserProfile} from '~/redux/user/types';
+import {AddressFormData} from '~/routes/address/schema';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDlP9wsJ80tNhttO3QcB9yuLd-r1RuEe5A',
@@ -19,6 +29,8 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+
+const ordersCollection = collection(db, 'orders');
 
 export type FirebaseUser = User;
 
@@ -35,4 +47,34 @@ export async function signInWithGoogle() {
 
 export async function signOut() {
   return auth.signOut();
+}
+
+export async function getOrders(user: FirebaseUserProfile) {
+  const q = query(ordersCollection, where('user.uid', '==', user.uid));
+  const querySnapshot = await getDocs(q);
+
+  const orders: Order[] = [];
+
+  querySnapshot.forEach((doc) =>
+    orders.push({id: doc.id, ...doc.data()} as Order),
+  );
+
+  return orders;
+}
+
+export async function saveOrder(
+  cart: OrderProduct[],
+  address: Required<AddressFormData>,
+  images: string[],
+  user: FirebaseUserProfile,
+) {
+  return addDoc(ordersCollection, {
+    cart: cart,
+    address: address,
+    paymentProof: images,
+    user: {
+      uid: user.uid,
+      email: user.email,
+    },
+  });
 }

@@ -8,7 +8,7 @@ function Header() {
   const navigate = useNavigate();
   const {pathname} = useLocation();
 
-  const isSignedIn = useAppSelector((state) => state.user.profile !== null);
+  const isPlacingOrder = useAppSelector((state) => state.order.isPlacingOrder);
   const cartProductsCount = useAppSelector((state) =>
     state.cart.products.reduce((acc, p) => acc + p.quantity, 0),
   );
@@ -21,15 +21,18 @@ function Header() {
     <div className="py-2 px-3 flex justify-between gap-2">
       <span>
         {pathname !== '/' && (
-          <md-icon-button onClick={handleBackClick}>
+          <md-icon-button
+            onClick={handleBackClick}
+            disabled={isPlacingOrder || undefined}
+          >
             <md-icon>arrow_back</md-icon>
           </md-icon-button>
         )}
       </span>
       <span>
-        <Link to="/cart">
+        <Link to="/cart" onClick={(e) => isPlacingOrder && e.preventDefault()}>
           <span className="relative">
-            <md-icon-button>
+            <md-icon-button disabled={isPlacingOrder || undefined}>
               <md-icon>shopping_cart</md-icon>
             </md-icon-button>
             {cartProductsCount !== 0 && (
@@ -39,11 +42,11 @@ function Header() {
             )}
           </span>
         </Link>
-        {isSignedIn && (
-          <md-icon-button onClick={signOut}>
+        <Link to="/profile">
+          <md-icon-button disabled={isPlacingOrder || undefined}>
             <md-icon>account_circle</md-icon>
           </md-icon-button>
-        )}
+        </Link>
       </span>
     </div>
   );
