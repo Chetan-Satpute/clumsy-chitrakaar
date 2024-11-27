@@ -4,7 +4,7 @@ import CartItem from './cart-item';
 import ShoppingBagSpeed from '~/assets/svgs/shopping-bag-speed';
 import products from '~/data/products';
 import SignInWithGoogle from '~/components/sign-in-with-google';
-import {useNavigate} from 'react-router';
+import {useNavigate, Link} from 'react-router';
 import {useDispatch} from 'react-redux';
 import {saveOrderCart} from '~/redux/order/slice';
 
@@ -38,7 +38,9 @@ function Cart() {
   return (
     <div className="flex-1 overflow-auto">
       <div className="flex justify-center mb-10">
-        <img src={logo} className="h-24" />
+        <Link to="/">
+          <img src={logo} className="h-24" />
+        </Link>
       </div>
 
       {cartItems.length ? (

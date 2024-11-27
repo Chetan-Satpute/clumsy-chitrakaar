@@ -6,16 +6,19 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import {
+  doc,
   addDoc,
   collection,
   getDocs,
   getFirestore,
   query,
   where,
+  writeBatch,
 } from 'firebase/firestore';
 import {Order, OrderProduct} from '~/redux/order/types';
 import {FirebaseUserProfile} from '~/redux/user/types';
 import {AddressFormData} from '~/routes/address/schema';
+import {getUniqueFileName} from '~/utils/file';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDlP9wsJ80tNhttO3QcB9yuLd-r1RuEe5A',
@@ -62,19 +65,40 @@ export async function getOrders(user: FirebaseUserProfile) {
   return orders;
 }
 
+export async function savePaymentImages(
+  imagesBase64: string[],
+  user: FirebaseUserProfile,
+) {
+  const batch = writeBatch(db);
+
+  const filePaths = imagesBase64.map((image) => {
+    const path = `${user.uid}|${getUniqueFileName()}`;
+
+    const ref = doc(db, 'paymentProofs', path);
+    batch.set(ref, {data: image});
+
+    return path;
+  });
+
+  await batch.commit();
+
+  return filePaths;
+}
+
 export async function saveOrder(
   cart: OrderProduct[],
   address: Required<AddressFormData>,
-  images: string[],
+  paymentProofFilePaths: string[],
   user: FirebaseUserProfile,
 ) {
   return addDoc(ordersCollection, {
     cart: cart,
     address: address,
-    paymentProof: images,
+    paymentProof: paymentProofFilePaths,
     user: {
       uid: user.uid,
       email: user.email,
     },
+    status: 'We are currently verifying your payment.',
   });
 }

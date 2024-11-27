@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import Orders from '~/assets/svgs/orders';
 import SignInWithGoogle from '~/components/sign-in-with-google';
 import {getOrders, signOut} from '~/firebase/app';
@@ -6,41 +6,16 @@ import {useAppSelector} from '~/redux/hooks';
 import {Order} from '~/redux/order/types';
 import '@material/web/button/text-button.js';
 import {Link} from 'react-router';
-import CartItem from '../cart/cart-item';
 
 function Profile() {
-  const [orders, setOrders] = useState<Order[]>([
-    {
-      id: 'some-unique-id',
-      cart: [
-        {
-          id: 'product-a',
-          name: 'Product A',
-          price: 499,
-          quantity: 2,
-        },
-      ],
-      address: {
-        firstName: 'Chetan',
-        lastName: 'Satpute',
-        email: 'chetan.satpute2002@gmail.com',
-        contactNumber: '7898607428',
-        country: 'India',
-        state: 'Madhya Pradesh',
-        city: 'Betul',
-        postalCode: '460001',
-        address: 'Patel Ward',
-      },
-      status: 'Payment verification is in progress',
-    },
-  ]);
+  const [orders, setOrders] = useState<Order[]>([]);
   const [status, setStatus] = useState<'pending' | 'loaded' | 'errored'>(
-    'loaded',
+    'pending',
   );
 
   const profile = useAppSelector((state) => state.user.profile);
 
-  const loadOrders = async () => {
+  const loadOrders = useCallback(async () => {
     if (!profile) return;
 
     try {
@@ -53,11 +28,11 @@ function Profile() {
       console.error(error);
       setStatus('errored');
     }
-  };
+  }, [profile, status]);
 
   useEffect(() => {
-    // loadOrders();
-  }, []);
+    loadOrders();
+  }, [loadOrders]);
 
   if (profile === null) {
     return (
@@ -72,7 +47,7 @@ function Profile() {
   }
 
   const orderItems = orders.map((order) => (
-    <div className="w-full rounded-md bg-green-200 px-1 py-2">
+    <div key={order.id} className="w-full rounded-md bg-green-200 px-1 py-2">
       <p className="font-semibold text-sm px-2 mb-2">#{order.id}</p>
       {order.cart.map((item) => (
         <div key={item.id} className="px-2 flex justify-between">
@@ -153,7 +128,7 @@ function Profile() {
           </div>
         </>
       ) : (
-        <>{orderItems}</>
+        <div className="flex flex-col gap-3">{orderItems}</div>
       )}
     </div>
   );

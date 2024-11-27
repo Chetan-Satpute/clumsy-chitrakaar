@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux';
 import {Navigate, useNavigate} from 'react-router';
 import logo from '~/assets/images/logo.png';
 import qrCode from '~/assets/images/qr-code.jpeg';
-import {saveOrder} from '~/firebase/app';
+import {saveOrder, savePaymentImages} from '~/firebase/app';
 import {useAppSelector} from '~/redux/hooks';
 import {setPlacingOrder} from '~/redux/order/slice';
 import {fileToBase64} from '~/utils/file';
@@ -70,16 +70,25 @@ function Payment() {
   });
 
   const handlePlaceOrder = async () => {
-    dispatch(setPlacingOrder(true));
+    try {
+      dispatch(setPlacingOrder(true));
 
-    const filesAsBase64 = await Promise.all(
-      images.map((imageFile) => fileToBase64(imageFile)),
-    );
+      const filesAsBase64 = await Promise.all(
+        images.map((imageFile) => fileToBase64(imageFile)),
+      );
 
-    await saveOrder(orderCart, orderAddress, filesAsBase64, user);
+      const paymentProofFilePaths = await savePaymentImages(
+        filesAsBase64,
+        user,
+      );
+      await saveOrder(orderCart, orderAddress, paymentProofFilePaths, user);
 
-    dispatch(setPlacingOrder(false));
-    navigate('/thank-you');
+      navigate('/thank-you');
+    } catch (error) {
+      console.error(error);
+    } finally {
+      dispatch(setPlacingOrder(false));
+    }
   };
 
   return (
