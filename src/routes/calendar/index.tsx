@@ -3,13 +3,15 @@ import logo from '~/assets/images/logo.png';
 import Flower from '~/assets/svgs/flower';
 import '@material/web/button/filled-button.js';
 import {Navigate, useParams} from 'react-router';
-import {useMemo} from 'react';
+import {useEffect, useMemo, useRef} from 'react';
 import products from '~/data/products';
 import AddToCart from '~/components/add-to-cart';
 import {useAppDispatch, useAppSelector} from '~/redux/hooks';
 import {addProductToCart, removeProductFromCart} from '~/redux/cart/slice';
 
 function Calendar() {
+  const carouselRef = useRef<Flicking>(null);
+
   const params = useParams();
   const productId = params.id;
 
@@ -26,9 +28,26 @@ function Calendar() {
     return products.find((p) => p.id === productId);
   }, [productId]);
 
+  useEffect(() => {
+    const id = setInterval(() => {
+      carouselRef.current?.next();
+    }, 5000);
+
+    return () => clearInterval(id);
+  }, []);
+
   if (!product) {
     return <Navigate to="/" />;
   }
+
+  const imageItem = product.images.map((image) => (
+    <div
+      key={image}
+      className="aspect-square z-10 w-full bg-blue-300 flex justify-center items-center rounded-md overflow-hidden"
+    >
+      <img src={image} className="object-fill" />
+    </div>
+  ));
 
   return (
     <div className="flex-1 overflow-auto">
@@ -38,16 +57,8 @@ function Calendar() {
 
       <div className="relative bg-green-200 pt-10 z-10">
         <div className="w-6/12 md:w-6/12">
-          <Flicking circular>
-            <div className="aspect-square z-10 w-full bg-blue-300 flex justify-center items-center rounded-md">
-              1
-            </div>
-            <div className="aspect-square z-10 w-full bg-green-300 flex justify-center items-center rounded-md">
-              2
-            </div>
-            <div className="aspect-square z-10 w-full bg-orange-300 flex justify-center items-center rounded-md">
-              3
-            </div>
+          <Flicking ref={carouselRef} circular>
+            {imageItem}
           </Flicking>
         </div>
 
@@ -77,31 +88,27 @@ function Calendar() {
 
       <div className="mx-5 my-10 bg-green-200 p-3">
         <h6 className="font-bold text-center text-sm mb-2">
-          Website & Products Overall Information
+          {product.heading}
         </h6>
-        <p className="text-center text-sm font-normal">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+        <p className="text-center text-sm font-normal">{product.description}</p>
+        <p className="text-center text-xs font-normal my-5">
+          Treat yourself and your loved ones to this handmade calendar—it’s the
+          perfect blend of charm and creativity to brighten up any space all
+          year long!
         </p>
 
         <div className="mt-4 max-w-md m-auto">
           <div className="flex justify-between">
             <span className="font-normal text-sm">Height</span>
-            <span className="font-semibold text-sm">20cm</span>
+            <span className="font-semibold text-sm">{product.height}</span>
           </div>
           <div className="flex justify-between">
             <span className="font-normal text-sm">Width</span>
-            <span className="font-semibold text-sm">20cm</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="font-normal text-sm">Dimensions</span>
-            <span className="font-semibold text-sm">20cm</span>
+            <span className="font-semibold text-sm">{product.width}</span>
           </div>
           <div className="flex justify-between">
             <span className="font-normal text-sm">Material</span>
-            <span className="font-semibold text-sm">wood & paper</span>
+            <span className="font-semibold text-sm">200gsm paper</span>
           </div>
         </div>
       </div>

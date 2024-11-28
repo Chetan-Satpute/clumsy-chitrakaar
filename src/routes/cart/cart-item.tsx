@@ -16,6 +16,7 @@ function CartItem(props: CartItemProps) {
   return (
     <div className="bg-green-200 px-5 py-10 flex items-center">
       <div className="relative aspect-square bg-blue-200 w-1/2 md:w-1/4 rounded-md">
+        <img src={cartProduct.primaryImage} className="object-fill" />
         <span className="absolute -bottom-8 -right-8">
           <Flower />
         </span>
