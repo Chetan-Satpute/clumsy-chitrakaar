@@ -1,5 +1,5 @@
 import {createBrowserRouter, RouterProvider} from 'react-router';
-import {usePersistCart} from '~/redux/hooks';
+import {usePersistCart} from '~/redux/cart/hooks';
 
 import Cart from './cart';
 import Home from './home';
