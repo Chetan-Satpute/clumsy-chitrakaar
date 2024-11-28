@@ -6,6 +6,7 @@ import logo from '~/assets/images/logo.png';
 import qrCode from '~/assets/images/qr-code.jpeg';
 import {saveOrder, savePaymentImages} from '~/firebase/app';
 import {useAppSelector} from '~/redux/hooks';
+import {emptyCart} from '~/redux/cart/slice';
 import {setPlacingOrder} from '~/redux/order/slice';
 import {fileToBase64} from '~/utils/file';
 import '@material/web/progress/circular-progress.js';
@@ -83,6 +84,7 @@ function Payment() {
       );
       await saveOrder(orderCart, orderAddress, paymentProofFilePaths, user);
 
+      dispatch(emptyCart());
       navigate('/thank-you');
     } catch (error) {
       console.error(error);
@@ -158,14 +160,16 @@ function Payment() {
             />
           </Button>
         ) : (
-          <md-filled-button
-            trailing-icon
-            class="w-full max-w-sm"
-            disabled={isPlacingOrder || undefined}
-            onClick={handlePlaceOrder}
-          >
-            Place order
-          </md-filled-button>
+          <div className="flex justify-center">
+            <md-filled-button
+              trailing-icon
+              class="w-full max-w-sm"
+              disabled={isPlacingOrder || undefined}
+              onClick={handlePlaceOrder}
+            >
+              Place order
+            </md-filled-button>
+          </div>
         )}
       </div>
     </div>

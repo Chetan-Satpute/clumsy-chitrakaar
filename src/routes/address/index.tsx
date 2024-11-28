@@ -35,8 +35,6 @@ function Address() {
     },
     validationSchema: addressSchema,
     onSubmit: (data: AddressFormData) => {
-      console.log('[Formik] Submitted data', data);
-
       dispatch(saveOrderAddress(data));
       navigate('/payment');
     },

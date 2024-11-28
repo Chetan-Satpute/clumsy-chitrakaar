@@ -1,10 +1,9 @@
-import {Link, useLocation, useNavigate} from 'react-router';
+import {Link, useLocation} from 'react-router';
 import {useAppSelector} from '~/redux/hooks';
 import '@material/web/icon/icon.js';
 import '@material/web/iconbutton/icon-button.js';
 
 function Header() {
-  const navigate = useNavigate();
   const {pathname} = useLocation();
 
   const isPlacingOrder = useAppSelector((state) => state.order.isPlacingOrder);
@@ -12,20 +11,15 @@ function Header() {
     state.cart.products.reduce((acc, p) => acc + p.quantity, 0),
   );
 
-  const handleBackClick = () => {
-    navigate(-1);
-  };
-
   return (
     <div className="py-2 px-3 flex justify-between gap-2">
       <span>
         {pathname !== '/' && (
-          <md-icon-button
-            onClick={handleBackClick}
-            disabled={isPlacingOrder || undefined}
-          >
-            <md-icon>arrow_back</md-icon>
-          </md-icon-button>
+          <Link to="/">
+            <md-icon-button disabled={isPlacingOrder || undefined}>
+              <md-icon>arrow_back</md-icon>
+            </md-icon-button>
+          </Link>
         )}
       </span>
       <span>

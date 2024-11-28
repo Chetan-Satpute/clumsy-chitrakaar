@@ -1,4 +1,5 @@
 import {createBrowserRouter, RouterProvider} from 'react-router';
+import {usePersistCart} from '~/redux/hooks';
 
 import Cart from './cart';
 import Home from './home';
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
 ]);
 
 function AppRouter() {
+  usePersistCart();
   return <RouterProvider router={router} />;
 }
 

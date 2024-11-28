@@ -41,8 +41,7 @@ const provider = new GoogleAuthProvider();
 
 export async function signInWithGoogle() {
   try {
-    const result = await signInWithPopup(auth, provider);
-    console.log('[Firebase] Login user:', result.user);
+    await signInWithPopup(auth, provider);
   } catch (error) {
     console.error(error);
   }

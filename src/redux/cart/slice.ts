@@ -2,7 +2,9 @@ import {createSlice} from '@reduxjs/toolkit';
 import {CartProduct} from './types';
 import {
   addProductToCartReducer,
+  emptyCartReducer,
   removeProductFromCartReducer,
+  loadCartReducer,
 } from './reducers';
 
 export interface CartSlice {
@@ -18,8 +20,11 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addProductToCart: addProductToCartReducer,
+    emptyCart: emptyCartReducer,
     removeProductFromCart: removeProductFromCartReducer,
+    loadCart: loadCartReducer,
   },
 });
 
-export const {addProductToCart, removeProductFromCart} = cartSlice.actions;
+export const {addProductToCart, emptyCart, removeProductFromCart, loadCart} =
+  cartSlice.actions;

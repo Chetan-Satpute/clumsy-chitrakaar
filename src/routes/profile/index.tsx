@@ -87,14 +87,16 @@ function Profile() {
         </p>
         <p className="text-center text-sm">{profile.email}</p>
 
-        <md-text-button
-          trailing-icon
-          class="w-full max-w-sm mt-5"
-          onClick={signOut}
-        >
-          Logout
-          <md-icon slot="icon">logout</md-icon>
-        </md-text-button>
+        <div className="flex justify-center">
+          <md-text-button
+            trailing-icon
+            class="w-full max-w-sm mt-5"
+            onClick={signOut}
+          >
+            Logout
+            <md-icon slot="icon">logout</md-icon>
+          </md-text-button>
+        </div>
       </div>
 
       <h6 className="text-lg font-bold my-5">Your orders</h6>

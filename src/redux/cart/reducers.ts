@@ -34,3 +34,14 @@ export function removeProductFromCartReducer(
     cartProduct.quantity--;
   }
 }
+
+export function loadCartReducer(
+  _state: CartSlice,
+  action: PayloadAction<CartSlice>,
+) {
+  return action.payload;
+}
+
+export function emptyCartReducer(state: CartSlice) {
+  state.products = [];
+}

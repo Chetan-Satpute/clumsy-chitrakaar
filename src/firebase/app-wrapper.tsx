@@ -11,8 +11,6 @@ function FirebaseAppWrapper(props: PropsWithChildren) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log('[Firebase User]', user);
-
       dispatch(
         updateUserProfile(
           user === null
