@@ -66,8 +66,12 @@ function Calendar() {
 
         <div className="absolute w-5/12 md:w-5/12 bg-white h-full top-0 right-0 flex flex-col justify-center items-center gap-5 overflow-hidden">
           <div>
-            <h6 className="text-center font-extrabold">{product.name}</h6>
-            <p className="text-center font-bold">{product.price} /-</p>
+            <h6 className="text-center font-extrabold md:text-2xl">
+              {product.name}
+            </h6>
+            <p className="text-center font-bold md:text-2xl">
+              ₹{product.price}
+            </p>
           </div>
 
           <AddToCart

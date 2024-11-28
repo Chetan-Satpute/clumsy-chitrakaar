@@ -84,8 +84,8 @@ function Home() {
 
       <div className="relative mt-24 mb-10 bg-green-200 py-5 flex justify-end px-5">
         <div className="absolute top-0 left-0 w-5/12 bg-white h-full z-0" />
-        <div className="absolute top-0 left-0 w-6/12 h-full z-20 flex justify-start items-center p-5 lg:px-10">
-          <p className="font-extrabold text-xl md:text-3xl lg:text-4xl">
+        <div className="absolute top-0 left-0 w-6/12 h-full z-20 flex justify-start items-start lg:p-5 lg:px-10">
+          <p className="font-extrabold text-xl md:text-3xl lg:text-4xl -mt-1.5 md:mt-5 px-5">
             Where art is more than just a vision.
           </p>
         </div>
@@ -115,16 +115,16 @@ function Home() {
 
       <div className="relative bg-green-400 mb-10 pt-10 h-4/6 lg:h-5/6">
         <div className="h-full overflow-auto z-10 no-scrollbar">
-          <div className="z-10 sticky align-right top-0 h-full w-5/6 ml-auto rounded-md bg-orange-200 overflow-hidden">
+          <div className="z-10 sticky align-right top-0 h-full w-5/6 md:w-4/6 ml-auto rounded-md bg-orange-200 overflow-hidden">
             <img src={home8} className="object-fill h-full w-full" />
           </div>
-          <div className="z-10 sticky align-right top-0 h-full w-5/6 ml-auto rounded-md bg-green-200 overflow-hidden">
+          <div className="z-10 sticky align-right top-0 h-full w-5/6 md:w-4/6 ml-auto rounded-md bg-green-200 overflow-hidden">
             <img src={home9} className="object-fill h-full w-full" />
           </div>
-          <div className="z-10 sticky align-right top-0 h-full w-5/6 ml-auto rounded-md bg-green-200 overflow-hidden">
+          <div className="z-10 sticky align-right top-0 h-full w-5/6 md:w-4/6 ml-auto rounded-md bg-green-200 overflow-hidden">
             <img src={home10} className="object-fill h-full w-full" />
           </div>
-          <div className="z-10 sticky align-right top-0 h-full w-5/6 ml-auto rounded-md bg-green-200 overflow-hidden">
+          <div className="z-10 sticky align-right top-0 h-full w-5/6 md:w-4/6 ml-auto rounded-md bg-green-200 overflow-hidden">
             <img src={home11} className="object-fill h-full w-full" />
           </div>
         </div>
@@ -139,22 +139,26 @@ function Home() {
         </p>
       </div>
 
-      <h4 className="text-xl text-center font-extrabold mb-5">
+      {/* <h4 className="text-xl text-center font-extrabold mb-5">
         Get ready for the gifting season
-      </h4>
+      </h4> */}
 
       {/* <FocusFlicking /> */}
 
       <div className="mx-5 my-10 bg-green-300 p-3">
-        <h6 className="font-bold text-center text-sm mb-2">Meet the Artist!</h6>
-        <p className="text-center text-sm font-normal">
-          Hi, I’m Pallavi Sajjanshetty, aka Clumsy Chitrakaar. I’m passionate
+        <h6 className="font-bold text-center text-sm md:text-normal mb-2">
+          Meet the Artist!
+        </h6>
+        <p className="text-center text-sm md:text-normal font-normal">
+          Hi, I’m <span className="font-bold">Pallavi Sajjanshetty</span>, aka
+          <span className="font-bold">Clumsy Chitrakaar</span>. I’m passionate
           about flowers and plants, and through my hand-drawn illustrations, I
           bring the beauty of nature to life. What started as a hobby quickly
-          became a way to fuel my creativity (and it funds my caffeine
-          addiction). From calendars to quirky creations, my art celebrates the
-          everyday wonders around us because who wouldn’t want a bouquet that
-          never wilts on their desk?
+          became a way to fuel my creativity (and it gets me my coffee).
+          <br />
+          From calendars to quirky creations, my art celebrates the everyday
+          wonders around us because who wouldn’t want a bouquet that never wilts
+          on their desk?
         </p>
       </div>
     </div>
