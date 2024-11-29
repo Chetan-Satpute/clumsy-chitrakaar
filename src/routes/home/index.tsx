@@ -6,8 +6,7 @@ import home3 from '~/assets/images/home-3.png';
 import home4 from '~/assets/images/home-4.png';
 import home8 from '~/assets/images/home-8.png';
 import home9 from '~/assets/images/home-9.png';
-import home10 from '~/assets/images/home-10.png';
-import home11 from '~/assets/images/home-11.png';
+import home11 from '~/assets/images/home-11.jpeg';
 import homeVideo1 from '~/assets/videos/home-1.mp4';
 import Flower from '~/assets/svgs/flower';
 import Item from './item';
@@ -120,9 +119,6 @@ function Home() {
           </div>
           <div className="z-10 sticky align-right top-0 h-full w-5/6 md:w-4/6 ml-auto rounded-md bg-green-200 overflow-hidden">
             <img src={home9} className="object-fill h-full w-full" />
-          </div>
-          <div className="z-10 sticky align-right top-0 h-full w-5/6 md:w-4/6 ml-auto rounded-md bg-green-200 overflow-hidden">
-            <img src={home10} className="object-fill h-full w-full" />
           </div>
           <div className="z-10 sticky align-right top-0 h-full w-5/6 md:w-4/6 ml-auto rounded-md bg-green-200 overflow-hidden">
             <img src={home11} className="object-fill h-full w-full" />
